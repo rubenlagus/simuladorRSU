@@ -27,7 +27,6 @@ public class SeparadorInductivo extends Modulo {
 	 * @param lineaEntrada
 	 * @param lineaSalidaAluminio
 	 * @param lineaSalidaMezcla
-	 * @param velocidadCinta
 	 */
 	public SeparadorInductivo(Linea lineaEntrada, Linea lineaSalidaAluminio,
 			Linea lineaSalidaMezcla) {
@@ -57,7 +56,6 @@ public class SeparadorInductivo extends Modulo {
 	 * @param lineaEntrada
 	 * @param lineaSalidaAluminio
 	 * @param lineaSalidaMezcla
-	 * @param velocidadCinta
 	 */
 	public SeparadorInductivo(Linea lineaEntrada, Linea lineaSalidaAluminio,
 			Linea lineaSalidaMezcla, Residuos RSU) {

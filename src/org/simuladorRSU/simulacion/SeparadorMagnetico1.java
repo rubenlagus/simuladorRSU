@@ -6,7 +6,7 @@ public class SeparadorMagnetico1 extends Modulo {
 	private Linea lineaEntradaSeparadorBalistico = null;
 	private Linea lineaSalidaOrganica = null; 
 	private Salida lineaSalidaFerricos = null;
-	private int velocidad = 50; // TODO Separador Magnetico velocidad cinta
+	private int velocidad = 50;
 	
 	
 	
