@@ -6,20 +6,29 @@ public class TriajeDeControlPET extends TriajeDeControl {
 	 * 
 	 */
 	public TriajeDeControlPET(Linea lineaEntrada, Salida salidaMaterial, Linea salidaRechazo) {
-		this.lineaEntrada = lineaEntrada;
-		this.salidaMaterial = salidaMaterial;
-		this.salidaRechazo = salidaRechazo;
+        super(lineaEntrada, salidaMaterial, salidaRechazo);
 	}
-	
-	/**
-	 * 
-	 */
-	public TriajeDeControlPET(Residuos RSU, Linea lineaEntrada, Salida salidaMaterial, Linea salidaRechazo) {
-		this.RSU = RSU; 
-		this.lineaEntrada = lineaEntrada;
-		this.salidaMaterial = salidaMaterial;
-		this.salidaRechazo = salidaRechazo;
-	}
+
+    /**
+     *
+     */
+    public TriajeDeControlPET(Residuos RSU,Linea lineaEntrada, Salida salidaMaterial, Linea salidaRechazo) {
+        super(RSU, lineaEntrada, salidaMaterial, salidaRechazo);
+    }
+
+    /**
+     *
+     */
+    public TriajeDeControlPET(Linea lineaEntrada, Salida salidaMaterial, Linea salidaRechazo, int efectividad, int velocidad, int numTrabajadores) {
+        super(lineaEntrada, salidaMaterial, salidaRechazo, efectividad, velocidad, numTrabajadores);
+    }
+
+    /**
+     *
+     */
+    public TriajeDeControlPET(Residuos RSU,Linea lineaEntrada, Salida salidaMaterial, Linea salidaRechazo, int efectividad, int velocidad, int numTrabajadores) {
+        super(RSU, lineaEntrada, salidaMaterial, salidaRechazo, efectividad, velocidad, numTrabajadores);
+    }
 	
 	@Override
 	public void salida() {
