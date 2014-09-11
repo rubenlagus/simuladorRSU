@@ -19,22 +19,25 @@
 package org.simuladorRSU.simulacion;
 
 /**
- * Created by Ruben Bermudez on 09/05/2014.
+ * @author Ruben Bermudez
  */
 public class MasterThread implements Runnable {
 
     private static MasterThread instance = null;
     private static Thread myThread = null;
-    private static Residuos residuosToFoso = null;
-    private static boolean finished;
-    private static boolean suspended;
+    private Residuos residuosToFoso = null;
+    private boolean finished;
+    private boolean suspended;
+    private boolean added = false;
 
     private MasterThread() {
-        MasterThread.residuosToFoso = new Residuos(10);
-        MasterThread.finished = false;
-        MasterThread.suspended = false;
+        residuosToFoso = new Residuos(60);
+        finished = false;
+        suspended = false;
+        added = false;
+        StaticComponents.getInstance();
     }
-    
+
     public static MasterThread getInstance() {
         if (instance == null) {
             instance = new MasterThread();
@@ -55,17 +58,17 @@ public class MasterThread implements Runnable {
 
     public void stop() {
     	StaticComponents.getInstance().stopThreads();
-        MasterThread.finished = true;
+        instance = null;
     }
 
     public void suspend() {
     	StaticComponents.getInstance().suspendThreads();
-        MasterThread.suspended = true;
+        suspended = true;
     }
 
     public void resume() {
     	StaticComponents.getInstance().resumeThreads();
-        MasterThread.suspended = false;
+        suspended = false;
         synchronized(myThread) {
             myThread.notify();
         }
@@ -78,7 +81,14 @@ public class MasterThread implements Runnable {
         }
     }
 
+    public Residuos getResiduosToFoso() {
+        return residuosToFoso;
+    }
 
+    public void setResiduosToFoso(Residuos residuosToFoso) {
+        residuosToFoso = residuosToFoso;
+        added = false;
+    }
 
     /**
      * When an object implementing interface <code>Runnable</code> is used
@@ -104,7 +114,10 @@ public class MasterThread implements Runnable {
             } catch (InterruptedException e) {
                 stop();
             }
-            StaticComponents.getInstance().addFoso(residuosToFoso);
+            if (!added) {
+                StaticComponents.getInstance().addFoso(residuosToFoso);
+                added = true;
+            }
         }
     }
     

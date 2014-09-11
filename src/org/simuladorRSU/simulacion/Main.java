@@ -21,7 +21,7 @@ package org.simuladorRSU.simulacion;
 import org.simuladorRSU.ui.MainFrame;
 
 /**
- * Created by Ruben Bermudez on 06/05/2014.
+ * @author Ruben Bermudez
  */
 public class Main {
     public static void main(String [ ] args) {

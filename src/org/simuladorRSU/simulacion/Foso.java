@@ -20,7 +20,7 @@ package org.simuladorRSU.simulacion;
 
 
 /**
- * Created by Ruben Bermudez on 08/05/2014.
+ * @author Ruben Bermudez
  */
 public class Foso extends Modulo {
     private Linea lineaSalida;
@@ -40,9 +40,9 @@ public class Foso extends Modulo {
     public void salida() {
     	Residuos residuos;
     	synchronized (RSU) {
-    		residuos = RSU.disminuirPorcentaje(0.3);
+    		residuos = RSU.disminuirPorcentaje(porcentaje);
     	}
-        lineaSalida.add(residuos);
+        lineaSalida.put(residuos);
     }
 
     @Override

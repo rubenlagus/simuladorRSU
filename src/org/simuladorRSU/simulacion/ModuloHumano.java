@@ -20,7 +20,7 @@ package org.simuladorRSU.simulacion;
 
 
 /**
- * Created by Ruben Bermudez on 12/05/2014.
+ * @author Ruben Bermudez
  */
 public abstract class ModuloHumano extends Modulo {
     protected int efectividad;
@@ -41,12 +41,18 @@ public abstract class ModuloHumano extends Modulo {
         this.numTrabajadores = numTrabajadores;
     }
 
+    public ModuloHumano(Residuos RSU) {
+        super(RSU);
+        this.efectividad = 50;
+        this.velocidad = 50;
+        this.numTrabajadores = 4;
+    }
 
     public ModuloHumano() {
         super();
         this.efectividad = 50;
         this.velocidad = 50;
-        this.numTrabajadores = 1;
+        this.numTrabajadores = 4;
     }
 
     public synchronized int getEfectividad() {

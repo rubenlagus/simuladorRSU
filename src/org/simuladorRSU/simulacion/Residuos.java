@@ -19,11 +19,10 @@
 package org.simuladorRSU.simulacion;
 
 /**
- * Created by Ruben Bermudez on 06/05/2014.
+ * @author Ruben Bermudez
  */
 public class Residuos {
 
-    // TODO Uncomment variables if necessary
 	private double voluminososMetalicos;
 	private double voluminososNoMetalicos;
 	// FIN VOLUMINOSOS
@@ -34,7 +33,7 @@ public class Residuos {
     private double platicosMezcla;
     private double latasAcero;
     private double latasAluminio;
-    private double bricks;
+    private double briks;
     // FIN ENVASES
     private double madera;
     private double papelyCarton;
@@ -66,7 +65,7 @@ public class Residuos {
         platicosMezcla = 0;
         latasAcero = 0;
         latasAluminio = 0;
-        bricks = 0;
+        briks = 0;
         madera = 0;
         papelyCarton = 0;
         film = 0;
@@ -87,33 +86,33 @@ public class Residuos {
     }
 
     public Residuos(double cantidad) {
-    	voluminososMetalicos = cantidad;
-    	voluminososNoMetalicos = cantidad;
-        PET = cantidad;
-        PEAD = cantidad;
-        PVC = cantidad;
-        bolsas = cantidad;
-        platicosMezcla = cantidad;
-        latasAcero = cantidad;
-        latasAluminio = cantidad;
-        bricks = cantidad;
-        madera = cantidad;
-        papelyCarton = cantidad;
-        film = cantidad;
-        plasticosNoEnvases = cantidad;
-        aluminioNoEnvases = cantidad;
-        chatarraNoEnvase = cantidad;
-        materiaOrganica = cantidad;
-        jardinyPoda = cantidad;
-        finos = cantidad;
-        celulosas = cantidad;
-        ropa = cantidad;
-        zapatos = cantidad;
-        maderaNoEnvase = cantidad;
-        vidrio = cantidad;
-        RAEES = cantidad;
-        escombros = cantidad;
-        otros = cantidad;
+    	voluminososMetalicos = cantidad*0.0083;
+    	voluminososNoMetalicos = cantidad*0.0083;
+        PET = cantidad*0.0142;
+        PEAD = cantidad*0.0097;
+        PVC = cantidad*0.0;
+        bolsas = cantidad*0.0463;
+        platicosMezcla = cantidad*0.0252;
+        latasAcero = cantidad*0.0199;
+        latasAluminio = cantidad*0.0026;
+        briks = cantidad*0.0131;
+        madera = cantidad*0.0070;
+        papelyCarton = cantidad*0.1417;
+        film = cantidad*0.0233;
+        plasticosNoEnvases = cantidad*0.0082;
+        aluminioNoEnvases = cantidad*0.0033;
+        chatarraNoEnvase = cantidad*0.0078;
+        materiaOrganica = cantidad*0.3861;
+        jardinyPoda = cantidad*0.0205;
+        finos = cantidad*0.0880;
+        celulosas = cantidad*0.0709;
+        ropa = cantidad*0.0226;
+        zapatos = cantidad*0.0033;
+        maderaNoEnvase = cantidad*0.0107;
+        vidrio = cantidad*0.0410;
+        RAEES = cantidad*0.0004;
+        escombros = cantidad*0.0157;
+        otros = cantidad*0.0019;
     }
 
     public Residuos(Residuos copia) {
@@ -126,7 +125,7 @@ public class Residuos {
         platicosMezcla = copia.getPlaticosMezcla();
         latasAcero = copia.getLatasAcero();
         latasAluminio = copia.getLatasAluminio();
-        bricks = copia.getBricks();
+        briks = copia.getBriks();
         madera = copia.getMadera();
         papelyCarton = copia.getPapelyCarton();
         film = copia.getFilm();
@@ -185,6 +184,7 @@ public class Residuos {
         this.aluminioNoEnvases *= porcentaje;
         return aux-this.aluminioNoEnvases;
     }
+
     public double disminuirChatarraNoEnvasePorcentaje(double porcentaje) {
         porcentaje = 1-porcentaje;
         double aux = this.chatarraNoEnvase;
@@ -299,9 +299,9 @@ public class Residuos {
 
     public double disminuirBricksPorcenaje(double porcentaje) {
         porcentaje = 1-porcentaje;
-        double aux = this.bricks;
-        this.bricks *= porcentaje;
-        return aux-this.bricks;
+        double aux = this.briks;
+        this.briks *= porcentaje;
+        return aux-this.briks;
     }
 
     public double disminuirPapelyCartonPorcentaje(double porcentaje) {
@@ -349,7 +349,7 @@ public class Residuos {
         platicosMezcla += newResiduos.getPlaticosMezcla();
         latasAcero += newResiduos.getLatasAcero();
         latasAluminio += newResiduos.getLatasAluminio();
-        bricks += newResiduos.getBricks();
+        briks += newResiduos.getBriks();
         madera += newResiduos.getMadera();
         papelyCarton += newResiduos.getPapelyCarton();
         film += newResiduos.getFilm();
@@ -379,7 +379,7 @@ public class Residuos {
         platicosMezcla -= newResiduos.getPlaticosMezcla();
         latasAcero -= newResiduos.getLatasAcero();
         latasAluminio -= newResiduos.getLatasAluminio();
-        bricks -= newResiduos.getBricks();
+        briks -= newResiduos.getBriks();
         madera -= newResiduos.getMadera();
         papelyCarton -= newResiduos.getPapelyCarton();
         film -= newResiduos.getFilm();
@@ -411,7 +411,7 @@ public class Residuos {
         platicosMezcla *= porcentaje;
         latasAcero *= porcentaje;
         latasAluminio *= porcentaje;
-        bricks *= porcentaje;
+        briks *= porcentaje;
         madera *= porcentaje;
         papelyCarton *= porcentaje;
         film *= porcentaje;
@@ -445,7 +445,7 @@ public class Residuos {
     	masaTotal += platicosMezcla;
     	masaTotal += latasAcero;
     	masaTotal += latasAluminio;
-    	masaTotal += bricks;
+    	masaTotal += briks;
     	masaTotal += madera;
     	masaTotal += papelyCarton;
     	masaTotal += film;
@@ -468,8 +468,61 @@ public class Residuos {
     }
     
     public double generarCompost(double porcentaje, double porcentajePerdido) {
-		return disminuirPorcentaje((1-porcentajePerdido)*porcentaje).obtenerTotalMasa();
+		Residuos resultado = disminuirPorcentaje((1-porcentajePerdido)*porcentaje);
+
+        double masaTotal = 0.0;
+        masaTotal += resultado.getMadera();
+        masaTotal += resultado.getPapelyCarton();
+        masaTotal += resultado.getMateriaOrganica();
+        masaTotal += resultado.getJardinyPoda();
+        masaTotal += resultado.getMaderaNoEnvase();
+
+        return masaTotal;
 	}
+
+    public Residuos getResiduosHundidosTromelFinos(double porcentaje) {
+        return disminuirPorcentaje(porcentaje);
+    }
+
+    public Residuos getResiduosHundidosPequeniosTromelEnvases(double porcentaje) {
+        return disminuirPorcentaje(porcentaje);
+    }
+
+    public Residuos getResiduosHundidosGrandesTromelEnvases(double porcentaje) {
+        return disminuirPorcentaje(porcentaje);
+    }
+
+    public Residuos getResiduosFinosSeparadorBalistico(double porcentaje) {
+        return disminuirPorcentaje(porcentaje);
+    }
+
+    public Residuos getResiduosRodantesSeparadorBalistico(double porcentaje) {
+        return disminuirPorcentaje(porcentaje);
+    }
+
+    public Residuos getResiduosCaptadosSeparacionFilm(double porcentaje) {
+        return disminuirPorcentaje(porcentaje);
+    }
+
+    public Residuos getResiduosSeparadosSeparadorOpticoBrick(double porcentaje) {
+        return disminuirPorcentaje(porcentaje);
+    }
+
+    public Residuos getResiduosSeparadosSeparadorOpticoPEAD(double porcentaje) {
+        return disminuirPorcentaje(porcentaje);
+    }
+
+    public Residuos getResiduosSeparadosSeparadorOpticoPET(double porcentaje) {
+        return disminuirPorcentaje(porcentaje);
+    }
+
+    public Residuos getResiduosSeparadosSeparadorOpticoPlasticos(double porcentaje) {
+        return disminuirPorcentaje(porcentaje);
+    }
+
+    public Residuos getResiduosSeparadosSeparadorInductivo(double porcentaje) {
+        return disminuirPorcentaje(porcentaje);
+    }
 
     public double getMadera() {
         return madera;
@@ -631,12 +684,12 @@ public class Residuos {
         this.latasAluminio = latasAluminio;
     }
 
-    public double getBricks() {
-        return bricks;
+    public double getBriks() {
+        return briks;
     }
 
-    public void setBricks(double bricks) {
-        this.bricks = bricks;
+    public void setBriks(double briks) {
+        this.briks = briks;
     }
 
     public double getPapelyCarton() {

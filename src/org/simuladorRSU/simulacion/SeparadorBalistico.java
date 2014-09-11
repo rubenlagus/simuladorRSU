@@ -1,5 +1,26 @@
+/**
+ *   Copyright 2014 Ruben Bermudez
+ *
+ *   This file is part of SimulacionRSU.
+ *
+ *   SimulacionRSU is free software: you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation, either version 3 of the License, or
+ *   (at your option) any later version.
+ *
+ *   SimulacionRSU is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *   GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License
+ *   along with SimulacionRSU.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package org.simuladorRSU.simulacion;
 
+/**
+ * @author Ruben Bermudez
+ */
 public class SeparadorBalistico extends Modulo {
 
 	private Linea lineaEntradaCriba = null;
@@ -7,9 +28,10 @@ public class SeparadorBalistico extends Modulo {
 	private Linea lineaSalidaPlanares = null;
 	private Linea lineaSalidaRodantes = null;
 	private Linea lineaSalidaFinos = null;
-	private int anguloInclinacion = 3; // TODO Separador Balistico Angulo inclinacion
-	private int longitud = 6000; // TODO Separador Balistico Longitud
-	private int movimiento = 1; // TODO Separador Bal�stico vibracion 
+	private int anguloInclinacion = 3;
+	private int longitud = 6000;
+	private int movimiento = 1;
+    private int diametroHuecos = 20;
 	
 	public SeparadorBalistico(Residuos RSU, Linea lineaEntradaCriba, Linea lineaEntrajaTriajeManual,
 			Linea lineaSalidaPlanares, Linea lineaSalidaRodantes, Linea lineaSalidaFinos) {
@@ -22,6 +44,7 @@ public class SeparadorBalistico extends Modulo {
 		this.anguloInclinacion = 3;
 		this.longitud = 6000;
 		this.movimiento = 1;
+        this.diametroHuecos = 20;
 	}
 	
 	public SeparadorBalistico(Linea lineaEntradaCriba, Linea lineaEntradaTriajeManual, Linea lineaSalidaPlanares,
@@ -35,11 +58,12 @@ public class SeparadorBalistico extends Modulo {
 		this.anguloInclinacion = 3;
 		this.longitud = 6000;
 		this.movimiento = 1;
+        this.diametroHuecos = 20;
 	}
 	
 	public SeparadorBalistico(Residuos RSU, Linea lineaEntradaCriba, Linea lineaEntrajaTriajeManual,
 			Linea lineaSalidaPlanares, Linea lineaSalidaRodantes, Linea lineaSalidaFinos,
-			int anguloInclinacion, int longitud, int movimiento) {
+			int anguloInclinacion, int longitud, int movimiento, int diametroHuecos) {
 		super(RSU);
 		this.lineaEntradaCriba = lineaEntradaCriba;
 		this.lineaEntradaTriajeManual = lineaEntrajaTriajeManual;
@@ -49,11 +73,12 @@ public class SeparadorBalistico extends Modulo {
 		this.anguloInclinacion = anguloInclinacion;
 		this.longitud = longitud;
 		this.movimiento = movimiento;
+        this.diametroHuecos = diametroHuecos;
 	}
 
-	public SeparadorBalistico(Linea lineaEntradaCriba, Linea lineaEntradaTriajeManual, Linea lineaSalidaPlanares,
+    public SeparadorBalistico(Linea lineaEntradaCriba, Linea lineaEntradaTriajeManual, Linea lineaSalidaPlanares,
 			Linea lineaSalidaRodantes, Linea lineaSalidaFinos, int anguloInclinacion,
-			int longitud, int movimiento) {
+			int longitud, int movimiento, int diametroHuecos) {
 		super();
 		this.lineaEntradaCriba = lineaEntradaCriba;
 		this.lineaEntradaTriajeManual = lineaEntradaTriajeManual;
@@ -63,6 +88,7 @@ public class SeparadorBalistico extends Modulo {
 		this.anguloInclinacion = anguloInclinacion;
 		this.longitud = longitud;
 		this.movimiento = movimiento;
+        this.diametroHuecos = diametroHuecos;
 	}
 
 	public Linea getLineaEntrada() {
@@ -120,16 +146,41 @@ public class SeparadorBalistico extends Modulo {
 	public synchronized void setLongitud(int longitud) {
 		this.longitud = longitud;
 	}
-	
+
+    public int getDiametroHuecos() {
+        return diametroHuecos;
+    }
+
+    public void setDiametroHuecos(int diametroHuecos) {
+        this.diametroHuecos = diametroHuecos;
+    }
+
+    public Linea getLineaEntradaCriba() {
+        return lineaEntradaCriba;
+    }
+
+    public void setLineaEntradaCriba(Linea lineaEntradaCriba) {
+        this.lineaEntradaCriba = lineaEntradaCriba;
+    }
+
+    public Linea getLineaEntradaTriajeManual() {
+        return lineaEntradaTriajeManual;
+    }
+
+    public void setLineaEntradaTriajeManual(Linea lineaEntradaTriajeManual) {
+        this.lineaEntradaTriajeManual = lineaEntradaTriajeManual;
+    }
+
 	@Override
 	public void salida() {
 		Residuos residuos;
     	synchronized (RSU) {
-    		residuos = RSU.disminuirPorcentaje(1.0);
+            residuos = this.RSU;
+            this.RSU = new Residuos();
     	}
-		this.lineaSalidaFinos.add(residuos.disminuirPorcentaje(0.254257*calcularPorcentaje()));
-		this.lineaSalidaRodantes.add(residuos.disminuirPorcentaje(0.251230*calcularPorcentaje()));
-		this.lineaSalidaPlanares.add(residuos);
+		this.lineaSalidaFinos.put(residuos.getResiduosFinosSeparadorBalistico(0.254257 * calcularPorcentaje()));
+		this.lineaSalidaRodantes.put(residuos.getResiduosRodantesSeparadorBalistico(0.251230 * calcularPorcentaje()));
+		this.lineaSalidaPlanares.put(residuos);
 
 	}
 
@@ -155,10 +206,37 @@ public class SeparadorBalistico extends Modulo {
 	}
 
 	private double calcularPorcentajeFinos() {
-		return 1.0;
+        double resultado = 1.0;
+
+        double resultadoLongitud = 1.0;
+        resultadoLongitud = (0.2 * longitud)/3000 + 0.3;
+
+        double resultadoDiametro = 1.0;
+        resultadoDiametro = (0.1 * diametroHuecos)/40 + 0.65;
+
+        double resultInclinacion = 1.0;
+        resultInclinacion = (83 - anguloInclinacion)/80;
+
+        resultado = resultadoDiametro * resultadoLongitud * resultInclinacion;
+		return resultado;
 	}
 	
 	private double calcularPorcentajePlanares() {
-		return 1.0;
+        double resultado = 1.0;
+
+        double resultadoLongitud = 1.0;
+        resultadoLongitud = (0.35 * longitud)/3000 - (1.75/2) + 0.95;
+
+        double resultadoDiametro = 1.0;
+        resultadoDiametro = (-0.15 * diametroHuecos)/80 + (7.9/8);
+
+        double resultInclinacion = 1.0;
+        resultInclinacion = (83 - anguloInclinacion)/80;
+
+        double resultVelocidad = 1.0;
+        resultVelocidad = (0.02 - anguloInclinacion) + 0.8;
+
+        resultado = resultadoDiametro * resultadoLongitud * resultInclinacion * resultVelocidad;
+        return resultado;
 	}
 }

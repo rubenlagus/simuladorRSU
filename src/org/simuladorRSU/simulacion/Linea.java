@@ -21,7 +21,7 @@ package org.simuladorRSU.simulacion;
 import java.util.concurrent.ConcurrentLinkedDeque;
 
 /**
- * Created by Ruben Bermudez on 08/05/2014.
+ * @author Ruben Bermudez
  */
 public class Linea {
     protected ConcurrentLinkedDeque<Residuos> colaResiduos;
@@ -30,7 +30,7 @@ public class Linea {
         colaResiduos = new ConcurrentLinkedDeque<Residuos>();
     }
 
-    public void add(Residuos RSU) {
+    public void put(Residuos RSU) {
         colaResiduos.add(RSU);
     }
 

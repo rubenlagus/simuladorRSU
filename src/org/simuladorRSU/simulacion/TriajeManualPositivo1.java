@@ -19,7 +19,7 @@
 package org.simuladorRSU.simulacion;
 
 /**
- * Created by Ruben Bermudez on 08/05/2014.
+ * @author Ruben Bermudez
  */
 public class TriajeManualPositivo1 extends ModuloHumano {
 
@@ -46,7 +46,7 @@ public class TriajeManualPositivo1 extends ModuloHumano {
     public TriajeManualPositivo1(Residuos RSU, Linea lineaEntradaTromelEnvases, 
     							Linea lineaEntradaCaptacionFilm, Salida lineaSalidaPapelyCarton, 
     							Salida lineaSalidaFilm, Salida lineaSalidaPEAD, Linea lineaSalidaRechazo) {
-        super(RSU,1,1,1);
+        super(RSU);
         this.lineaEntradaTromelEnvases = lineaEntradaTromelEnvases;
         this.lineaEntradaCaptacionFilm = lineaEntradaCaptacionFilm;
         this.lineaSalidaPapelyCarton = lineaSalidaPapelyCarton;
@@ -84,19 +84,51 @@ public class TriajeManualPositivo1 extends ModuloHumano {
     }
 
     protected double calcularPorcentaje() {
-    	return 1.0;
+        double resultado = 1.0;
+
+        double resultNumTrabajadores = 1.0;
+        if (numTrabajadores == 0) {
+            resultNumTrabajadores = 0.0;
+        } else if (numTrabajadores <= 4) {
+            // f(x):=(0.6*x)/4;
+            resultNumTrabajadores = (0.6*numTrabajadores)/4;
+        } else if (numTrabajadores <= 8) {
+            // f(x):=(0.3*x)/4 + 0.3;
+            resultNumTrabajadores = (0.3*numTrabajadores)/4 + 0.3;
+        } else {
+            // f(x):=(0.05*x)/2 + 0.7;
+            resultNumTrabajadores = (0.05*numTrabajadores)/2 + 0.7;
+        }
+
+        double resultVelocidad = 1.0;
+        if (velocidad == 0) {
+            resultVelocidad = 0.0;
+        } else if (velocidad <= 50) {
+            // f(x):=(-0.16*x)/49 + 47.2/49;
+            resultVelocidad = (-1.0*0.16*velocidad)/49;
+            resultVelocidad += 47.2/49.0;
+        } else {
+            // g(x):=(-0.60*x)/50 + 7/5;
+            resultVelocidad = (-1.0*0.60*velocidad)/50;
+            resultVelocidad += 7/5;
+        }
+
+        resultado = resultNumTrabajadores*resultVelocidad*(efectividad/100.0);
+
+        return resultado;
     }
     
     @Override
     public synchronized void salida() {
     	Residuos residuos;
     	synchronized (RSU) {
-    		residuos = RSU.disminuirPorcentaje(1.0);
+            residuos = this.RSU;
+            this.RSU = new Residuos();
     	}
     	this.lineaSalidaFilm.add(residuos.disminuirFilmPorcentaje(0.044848*calcularPorcentaje()));
     	this.lineaSalidaPapelyCarton.add(residuos.disminuirPapelyCartonPorcentaje(0.085683*calcularPorcentaje()));
     	this.lineaSalidaPEAD.add(residuos.disminuirPEADPorcentaje(0.125235*calcularPorcentaje()));
-    	this.lineaSalidaRechazo.add(residuos);
+    	this.lineaSalidaRechazo.put(residuos);
     }
 
     @Override

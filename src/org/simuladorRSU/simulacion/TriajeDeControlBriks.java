@@ -21,21 +21,24 @@ package org.simuladorRSU.simulacion;
 /**
  * @author Ruben Bermudez
  */
-public class TriajeDeControlPapelyCarton extends TriajeDeControl {
+public class TriajeDeControlBriks extends TriajeDeControl {
 
-    public TriajeDeControlPapelyCarton(Linea lineaEntrada, Salida salidaMaterial, Linea salidaRechazo) {
+    public TriajeDeControlBriks(Linea lineaEntrada, Salida salidaMaterial, Linea salidaRechazo) {
         super(lineaEntrada, salidaMaterial, salidaRechazo);
     }
 
-    public TriajeDeControlPapelyCarton(Residuos RSU,Linea lineaEntrada, Salida salidaMaterial, Linea salidaRechazo) {
+
+    public TriajeDeControlBriks(Residuos RSU, Linea lineaEntrada, Salida salidaMaterial, Linea salidaRechazo) {
         super(RSU, lineaEntrada, salidaMaterial, salidaRechazo);
     }
 
-    public TriajeDeControlPapelyCarton(Linea lineaEntrada, Salida salidaMaterial, Linea salidaRechazo, int efectividad, int velocidad, int numTrabajadores) {
+
+    public TriajeDeControlBriks(Linea lineaEntrada, Salida salidaMaterial, Linea salidaRechazo, int efectividad, int velocidad, int numTrabajadores) {
         super(lineaEntrada, salidaMaterial, salidaRechazo, efectividad, velocidad, numTrabajadores);
     }
 
-    public TriajeDeControlPapelyCarton(Residuos RSU,Linea lineaEntrada, Salida salidaMaterial, Linea salidaRechazo, int efectividad, int velocidad, int numTrabajadores) {
+
+    public TriajeDeControlBriks(Residuos RSU, Linea lineaEntrada, Salida salidaMaterial, Linea salidaRechazo, int efectividad, int velocidad, int numTrabajadores) {
         super(RSU, lineaEntrada, salidaMaterial, salidaRechazo, efectividad, velocidad, numTrabajadores);
     }
 	
@@ -46,7 +49,7 @@ public class TriajeDeControlPapelyCarton extends TriajeDeControl {
             residuos = this.RSU;
             this.RSU = new Residuos();
     	}
-		salidaMaterial.add(residuos.disminuirPapelyCartonPorcentaje(0.080270*calcularPorcentaje()));
+		salidaMaterial.add(residuos.disminuirBricksPorcenaje(0.917643*calcularPorcentaje()));
 		salidaRechazo.put(residuos);
 	}
 

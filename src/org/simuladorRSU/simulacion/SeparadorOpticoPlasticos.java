@@ -1,73 +1,59 @@
 /**
- * 
+ *   Copyright 2014 Ruben Bermudez
+ *
+ *   This file is part of SimulacionRSU.
+ *
+ *   SimulacionRSU is free software: you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation, either version 3 of the License, or
+ *   (at your option) any later version.
+ *
+ *   SimulacionRSU is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *   GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License
+ *   along with SimulacionRSU.  If not, see <http://www.gnu.org/licenses/>.
  */
 package org.simuladorRSU.simulacion;
 
 /**
- * @author ruben
- *
+ * @author Ruben Bermudez
  */
 public class SeparadorOpticoPlasticos extends SeparadorOptico {
-	
-	/**
-	 * @param lineaEntrada
-	 * @param lineaSalidaSoplados
-	 * @param lineaSalidaOtros
-	 * @param velocidadCinta
-	 * @param RSU
-	 */
+
 	public SeparadorOpticoPlasticos(Linea lineaEntrada,
 			Linea lineaSalidaSoplados, Linea lineaSalidaOtros,
 			int velocidadCinta, Residuos RSU) {
 		super(lineaEntrada, lineaSalidaSoplados, lineaSalidaOtros, velocidadCinta, RSU);
 	}
 
-	/**
-	 * @param lineaEntrada
-	 * @param lineaSalidaSoplados
-	 * @param lineaSalidaOtros
-	 * @param velocidadCinta
-	 */
 	public SeparadorOpticoPlasticos(Linea lineaEntrada,
 			Linea lineaSalidaSoplados, Linea lineaSalidaOtros,
 			int velocidadCinta) {
 		super(lineaEntrada, lineaSalidaSoplados, lineaSalidaOtros, velocidadCinta);
 	}
 
-	/**
-	 * @param lineaEntrada
-	 * @param lineaSalidaSoplados
-	 * @param lineaSalidaOtros
-	 * @param RSU
-	 */
 	public SeparadorOpticoPlasticos(Linea lineaEntrada,
 			Linea lineaSalidaSoplados, Linea lineaSalidaOtros, Residuos RSU) {
 		super(lineaEntrada, lineaSalidaSoplados, lineaSalidaOtros, RSU);
 	}
 
-	/**
-	 * @param lineaEntrada
-	 * @param lineaSalidaSoplados
-	 * @param lineaSalidaOtros
-	 */
 	public SeparadorOpticoPlasticos(Linea lineaEntrada,
 			Linea lineaSalidaSoplados, Linea lineaSalidaOtros) {
 		super(lineaEntrada, lineaSalidaSoplados, lineaSalidaOtros);
 	}
 
 	@Override
-	protected double calcularPorcentaje() {
-		return 1.0;
-	}
-
-	@Override
 	public void salida() {
 		Residuos residuos;
     	synchronized (RSU) {
-    		residuos = RSU.disminuirPorcentaje(1.0);
+            residuos = this.RSU;
+            this.RSU = new Residuos();
     	}
-    	lineaSalidaSoplados.add(residuos.disminuirPorcentaje(calcularPorcentaje()));
-		lineaSalidaOtros.add(residuos);
+    	lineaSalidaSoplados.put(residuos.getResiduosSeparadosSeparadorOpticoPlasticos(calcularPorcentaje()));
+		lineaSalidaOtros.put(residuos);
 	}
 
 }

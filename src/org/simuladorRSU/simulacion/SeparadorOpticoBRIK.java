@@ -21,28 +21,27 @@ package org.simuladorRSU.simulacion;
 /**
  * @author Ruben Bermudez
  */
-public class SeparadorOpticoPEAD extends SeparadorOptico {
+public class SeparadorOpticoBRIK extends SeparadorOptico {
 
-	public SeparadorOpticoPEAD(Linea lineaEntrada,
-			Linea lineaSalidaSoplados, Linea lineaSalidaOtros,
-			int velocidadCinta, Residuos RSU) {
+	public SeparadorOpticoBRIK(Linea lineaEntrada,
+                               Linea lineaSalidaSoplados, Linea lineaSalidaOtros,
+                               int velocidadCinta, Residuos RSU) {
 		super(lineaEntrada, lineaSalidaSoplados, lineaSalidaOtros, velocidadCinta, RSU);
 	}
 
-	public SeparadorOpticoPEAD(Linea lineaEntrada,
-			Linea lineaSalidaSoplados, Linea lineaSalidaOtros,
-			int velocidadCinta) {
+	public SeparadorOpticoBRIK(Linea lineaEntrada,
+                               Linea lineaSalidaSoplados, Linea lineaSalidaOtros,
+                               int velocidadCinta) {
 		super(lineaEntrada, lineaSalidaSoplados, lineaSalidaOtros, velocidadCinta);
 	}
 
-
-	public SeparadorOpticoPEAD(Linea lineaEntrada,
-			Linea lineaSalidaSoplados, Linea lineaSalidaOtros, Residuos RSU) {
+	public SeparadorOpticoBRIK(Linea lineaEntrada,
+                               Linea lineaSalidaSoplados, Linea lineaSalidaOtros, Residuos RSU) {
 		super(lineaEntrada, lineaSalidaSoplados, lineaSalidaOtros, RSU);
 	}
 
-	public SeparadorOpticoPEAD(Linea lineaEntrada,
-			Linea lineaSalidaSoplados, Linea lineaSalidaOtros) {
+	public SeparadorOpticoBRIK(Linea lineaEntrada,
+                               Linea lineaSalidaSoplados, Linea lineaSalidaOtros) {
 		super(lineaEntrada, lineaSalidaSoplados, lineaSalidaOtros);
 	}
 
@@ -53,7 +52,7 @@ public class SeparadorOpticoPEAD extends SeparadorOptico {
             residuos = this.RSU;
             this.RSU = new Residuos();
     	}
-		lineaSalidaSoplados.put(residuos.getResiduosSeparadosSeparadorOpticoPEAD(0.274038 * calcularPorcentaje()));
+    	lineaSalidaSoplados.put(residuos.getResiduosSeparadosSeparadorOpticoBrick((0.249042 * calcularPorcentaje())));
 		lineaSalidaOtros.put(residuos);
 	}
 }

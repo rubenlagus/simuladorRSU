@@ -1,6 +1,26 @@
+/**
+ *   Copyright 2014 Ruben Bermudez
+ *
+ *   This file is part of SimulacionRSU.
+ *
+ *   SimulacionRSU is free software: you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation, either version 3 of the License, or
+ *   (at your option) any later version.
+ *
+ *   SimulacionRSU is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *   GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License
+ *   along with SimulacionRSU.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package org.simuladorRSU.simulacion;
 
-
+/**
+ * @author Ruben Bermudez
+ */
 public class SeparadorInductivo extends Modulo {
 
 	protected Linea lineaEntrada = null; 
@@ -8,12 +28,6 @@ public class SeparadorInductivo extends Modulo {
 	protected Linea lineaSalidaMezcla = null;
 	protected int velocidadCinta = 50;
 	
-	/**
-	 * @param lineaEntrada
-	 * @param lineaSalidaAluminio
-	 * @param lineaSalidaMezcla
-	 * @param velocidadCinta
-	 */
 	public SeparadorInductivo(Linea lineaEntrada, Linea lineaSalidaAluminio,
 			Linea lineaSalidaMezcla, int velocidadCinta) {
 		super();
@@ -22,12 +36,7 @@ public class SeparadorInductivo extends Modulo {
 		this.lineaSalidaMezcla = lineaSalidaMezcla;
 		this.velocidadCinta = velocidadCinta;
 	}
-	
-	/**
-	 * @param lineaEntrada
-	 * @param lineaSalidaAluminio
-	 * @param lineaSalidaMezcla
-	 */
+
 	public SeparadorInductivo(Linea lineaEntrada, Linea lineaSalidaAluminio,
 			Linea lineaSalidaMezcla) {
 		super();
@@ -37,12 +46,6 @@ public class SeparadorInductivo extends Modulo {
 		this.velocidadCinta = 50;
 	}
 
-	/**
-	 * @param lineaEntrada
-	 * @param lineaSalidaAluminio
-	 * @param lineaSalidaMezcla
-	 * @param velocidadCinta
-	 */
 	public SeparadorInductivo(Linea lineaEntrada, Linea lineaSalidaAluminio,
 			Linea lineaSalidaMezcla, int velocidadCinta, Residuos RSU) {
 		super(RSU);
@@ -51,12 +54,7 @@ public class SeparadorInductivo extends Modulo {
 		this.lineaSalidaMezcla = lineaSalidaMezcla;
 		this.velocidadCinta = velocidadCinta;
 	}
-	
-	/**
-	 * @param lineaEntrada
-	 * @param lineaSalidaAluminio
-	 * @param lineaSalidaMezcla
-	 */
+
 	public SeparadorInductivo(Linea lineaEntrada, Linea lineaSalidaAluminio,
 			Linea lineaSalidaMezcla, Residuos RSU) {
 		super(RSU);
@@ -100,17 +98,30 @@ public class SeparadorInductivo extends Modulo {
 	
 	@Override
 	protected double calcularPorcentaje() {
-		return 1.0;
+        double resultado = 1.0;
+        if (velocidadCinta == 0) {
+            resultado = 0.0;
+        } else if (velocidadCinta <= 50) {
+            // f(x):=(-0.16*x)/49 + 47.2/49;
+            resultado = (-1.0*0.16*velocidadCinta)/49;
+            resultado += 47.2/49.0;
+        } else {
+            // g(x):=(-0.60*x)/50 + 7/5;
+            resultado = (-1.0*0.60*velocidadCinta)/50;
+            resultado += 7/5;
+        }
+        return resultado;
 	}
 
 	@Override
 	public void salida() {
 		Residuos residuos;
     	synchronized (RSU) {
-    		residuos = RSU.disminuirPorcentaje(1.0);
+            residuos = this.RSU;
+            this.RSU = new Residuos();
     	}
-    	lineaSalidaAluminio.add(residuos.disminuirPorcentaje(0.015228*calcularPorcentaje()));
-		lineaSalidaMezcla.add(residuos);
+    	lineaSalidaAluminio.put(residuos.getResiduosSeparadosSeparadorInductivo(0.015228 * calcularPorcentaje()));
+		lineaSalidaMezcla.put(residuos);
 	}
 
 	@Override

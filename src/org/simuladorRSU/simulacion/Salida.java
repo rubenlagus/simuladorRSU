@@ -21,7 +21,7 @@ package org.simuladorRSU.simulacion;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**
- * Created by Ruben Bermudez on 08/05/2014.
+ * @author Ruben Bermudez
  */
 public class Salida implements Runnable {
 
@@ -112,6 +112,9 @@ public class Salida implements Runnable {
             }
 
         }
+    }
 
+    public Double getTotal() {
+        return totalMaterial;
     }
 }

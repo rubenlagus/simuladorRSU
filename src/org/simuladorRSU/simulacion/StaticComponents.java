@@ -18,9 +18,8 @@
  */
 package org.simuladorRSU.simulacion;
 
-
 /**
- * Created by Ruben Bermudez on 09/05/2014.
+ * @author Ruben Bermudez
  */
 public class StaticComponents {
 
@@ -40,11 +39,11 @@ public class StaticComponents {
     private SeparadorOpticoPlasticos separadorOpticoPlasticos = null;
     private SeparadorOpticoPEAD separadorOpticoPEAD = null;
     private SeparadorOpticoPET separadorOpticoPET = null;
-    private SeparadorOpticoBRICK separadorOpticoBRICK = null;
+    private SeparadorOpticoBRIK separadorOpticoBRIK = null;
     private SeparadorInductivo separadorInductivo = null;
     private Compostaje compostaje = null;
     private TriajeDeControlAluminio triajeDeControlAluminio = null;
-    private TriajeDeControlBricks triajeDeControlBricks = null;
+    private TriajeDeControlBriks triajeDeControlBriks = null;
     private TriajeDeControlFilm triajeDeControlFilm = null;
     private TriajeDeControlMezcla triajeDeControlMezcla = null;
     private TriajeDeControlPapelyCarton triajeDeControlPapelyCarton = null;
@@ -60,10 +59,11 @@ public class StaticComponents {
     private Salida salidaOrganica = null;
     private Salida salidaFilm = null;
     private Salida salidaCompost = null;
-    private Salida salidaBRICKS = null;
+    private Salida salidaBriks = null;
     private Salida salidaAluminio = null;
     private Salida salidaMezcla = null;
     private Salida salidaPET = null;
+    private SalidaRechazo salidaRechazo = null;
     
     
     // Lineas
@@ -92,7 +92,6 @@ public class StaticComponents {
     private Linea linea23 = null;
     private Linea linea24 = null;
     private Linea linea25 = null;
-    private Linea salidaRechazo = null;
 
     public static StaticComponents getInstance() {
     	if (instance == null)
@@ -127,7 +126,7 @@ public class StaticComponents {
         linea24 = new Linea();
         linea25 = new Linea();
         
-        salidaRechazo = new Linea();
+        salidaRechazo = new SalidaRechazo();
         
         salidaVidrio = new Salida() {
             @Override
@@ -199,7 +198,7 @@ public class StaticComponents {
             }
         };
         
-        salidaBRICKS = new Salida() {
+        salidaBriks = new Salida() {
         	@Override
             public void DebugInfo(Boolean interrupted) {
                 if (interrupted)
@@ -261,12 +260,12 @@ public class StaticComponents {
         separadorMagnetico2 = new SeparadorMagnetico2(linea10, salidaMetalicos, linea14);
         compostaje = new Compostaje(linea24, salidaRechazo, salidaCompost);
         separadorOpticoPlasticos = new SeparadorOpticoPlasticos(linea14, linea15, linea16);
-        separadorOpticoBRICK = new SeparadorOpticoBRICK(linea16, linea18, linea7);
+        separadorOpticoBRIK = new SeparadorOpticoBRIK(linea16, linea18, linea7);
         separadorOpticoPET = new SeparadorOpticoPET(linea15, linea21, linea20);
         separadorOpticoPEAD = new SeparadorOpticoPEAD(linea20, linea22, linea23);
         separadorInductivo = new SeparadorInductivo(linea17, linea19, linea23);
         triajeDeControlAluminio = new TriajeDeControlAluminio(linea19, salidaAluminio, salidaRechazo);
-        triajeDeControlBricks = new TriajeDeControlBricks(linea18, salidaBRICKS, salidaRechazo);
+        triajeDeControlBriks = new TriajeDeControlBriks(linea18, salidaBriks, salidaRechazo);
         triajeDeControlFilm = new TriajeDeControlFilm(linea13, salidaFilm, linea25);
         triajeDeControlPapelyCarton = new TriajeDeControlPapelyCarton(linea25, salidaPapelCarton, salidaRechazo);
         triajeDeControlPEAD = new TriajeDeControlPEAD(linea22, salidaPEAD, salidaRechazo);
@@ -379,12 +378,12 @@ public class StaticComponents {
 		this.separadorOpticoPET = separadorOpticoPET;
 	}
 
-	public SeparadorOpticoBRICK getSeparadorOpticoBRICK() {
-		return separadorOpticoBRICK;
+	public SeparadorOpticoBRIK getSeparadorOpticoBRIK() {
+		return separadorOpticoBRIK;
 	}
 
-	public void setSeparadorOpticoBRICK(SeparadorOpticoBRICK separadorOpticoBRICK) {
-		this.separadorOpticoBRICK = separadorOpticoBRICK;
+	public void setSeparadorOpticoBRIK(SeparadorOpticoBRIK separadorOpticoBRIK) {
+		this.separadorOpticoBRIK = separadorOpticoBRIK;
 	}
 
 	public SeparadorInductivo getSeparadorInductivo() {
@@ -403,12 +402,12 @@ public class StaticComponents {
 		this.compostaje = compostaje;
 	}
 
-	public TriajeDeControlBricks getTriajeDeControlBricks() {
-		return triajeDeControlBricks;
+	public TriajeDeControlBriks getTriajeDeControlBriks() {
+		return triajeDeControlBriks;
 	}
 
-	public void setTriajeDeControlBricks(TriajeDeControlBricks triajeDeControlBricks) {
-		this.triajeDeControlBricks = triajeDeControlBricks;
+	public void setTriajeDeControlBriks(TriajeDeControlBriks triajeDeControlBriks) {
+		this.triajeDeControlBriks = triajeDeControlBriks;
 	}
 
 	public TriajeDeControlFilm getTriajeDeControlFilm() {
@@ -525,12 +524,12 @@ public class StaticComponents {
 		this.salidaCompost = salidaCompost;
 	}
 
-	public Salida getSalidaBRICKS() {
-		return salidaBRICKS;
+	public Salida getSalidaBriks() {
+		return salidaBriks;
 	}
 
-	public void setSalidaBRICKS(Salida salidaBRICKS) {
-		this.salidaBRICKS = salidaBRICKS;
+	public void setSalidaBriks(Salida salidaBriks) {
+		this.salidaBriks = salidaBriks;
 	}
 
 	public Salida getSalidaAluminio() {
@@ -757,11 +756,11 @@ public class StaticComponents {
 		this.linea25 = linea25;
 	}
 
-	public Linea getSalidaRechazo() {
+	public SalidaRechazo getSalidaRechazo() {
 		return salidaRechazo;
 	}
 
-	public void setSalidaRechazo(Linea salidaRechazo) {
+	public void setSalidaRechazo(SalidaRechazo salidaRechazo) {
 		this.salidaRechazo = salidaRechazo;
 	}
 
@@ -774,10 +773,11 @@ public class StaticComponents {
         salidaOrganica.start();
         salidaFilm.start();
         salidaCompost.start();
-        salidaBRICKS.start();
+        salidaBriks.start();
         salidaAluminio.start();
         salidaMezcla.start();
-        salidaPET.start();     
+        salidaPET.start();
+        salidaRechazo.start();
         
         foso.start();
         triajePrimario.start();
@@ -791,12 +791,12 @@ public class StaticComponents {
         triajeManualPositivo2.start();
         compostaje.start();
         separadorOpticoPlasticos.start();
-        separadorOpticoBRICK.start();
+        separadorOpticoBRIK.start();
         separadorOpticoPET.start();
         separadorOpticoPEAD.start();
         separadorInductivo.start();
         triajeDeControlAluminio.start();
-        triajeDeControlBricks.start();
+        triajeDeControlBriks.start();
         triajeDeControlFilm.start();
         triajeDeControlPapelyCarton.start();
         triajeDeControlPEAD.start();
@@ -813,10 +813,11 @@ public class StaticComponents {
         salidaOrganica.interrupt();
         salidaFilm.interrupt();
         salidaCompost.interrupt();
-        salidaBRICKS.interrupt();
+        salidaBriks.interrupt();
         salidaAluminio.interrupt();
         salidaMezcla.interrupt();
-        salidaPET.interrupt(); 
+        salidaPET.interrupt();
+        salidaRechazo.interrupt();
         
         foso.interrupt();
         triajePrimario.interrupt();
@@ -830,17 +831,19 @@ public class StaticComponents {
         separadorMagnetico2.interrupt();
         compostaje.interrupt();
         separadorOpticoPlasticos.interrupt();
-        separadorOpticoBRICK.interrupt();
+        separadorOpticoBRIK.interrupt();
         separadorOpticoPET.interrupt();
         separadorOpticoPEAD.interrupt();
         separadorInductivo.interrupt();
         triajeDeControlAluminio.interrupt();
-        triajeDeControlBricks.interrupt();
+        triajeDeControlBriks.interrupt();
         triajeDeControlFilm.interrupt();
         triajeDeControlPapelyCarton.interrupt();
         triajeDeControlPEAD.interrupt();
         triajeDeControlPET.interrupt();
         triajeDeControlMezcla.interrupt();
+
+        instance = null;
     }
 
     public void suspendThreads() {
@@ -852,10 +855,11 @@ public class StaticComponents {
         salidaOrganica.suspend();
         salidaFilm.suspend();
         salidaCompost.suspend();
-        salidaBRICKS.suspend();
+        salidaBriks.suspend();
         salidaAluminio.suspend();
         salidaMezcla.suspend();
-        salidaPET.suspend(); 
+        salidaPET.suspend();
+        salidaRechazo.suspend();
 
         foso.suspend();
         triajePrimario.suspend();
@@ -869,12 +873,12 @@ public class StaticComponents {
         separadorMagnetico2.suspend();
         compostaje.suspend();
         separadorOpticoPlasticos.suspend();
-        separadorOpticoBRICK.suspend();
+        separadorOpticoBRIK.suspend();
         separadorOpticoPET.suspend();
         separadorOpticoPEAD.suspend();
         separadorInductivo.suspend();
         triajeDeControlAluminio.suspend();
-        triajeDeControlBricks.suspend();
+        triajeDeControlBriks.suspend();
         triajeDeControlFilm.suspend();
         triajeDeControlPapelyCarton.suspend();
         triajeDeControlPEAD.suspend();
@@ -891,10 +895,11 @@ public class StaticComponents {
         salidaOrganica.resume();
         salidaFilm.resume();
         salidaCompost.resume();
-        salidaBRICKS.resume();
+        salidaBriks.resume();
         salidaAluminio.resume();
         salidaMezcla.resume();
-        salidaPET.resume(); 
+        salidaPET.resume();
+        salidaRechazo.resume();
 
         foso.resume();
         triajePrimario.resume();
@@ -908,12 +913,12 @@ public class StaticComponents {
         separadorMagnetico2.resume();
         compostaje.resume();
         separadorOpticoPlasticos.resume();
-        separadorOpticoBRICK.resume();
+        separadorOpticoBRIK.resume();
         separadorOpticoPET.resume();
         separadorOpticoPEAD.resume();
         separadorInductivo.resume();
         triajeDeControlAluminio.resume();
-        triajeDeControlBricks.resume();
+        triajeDeControlBriks.resume();
         triajeDeControlFilm.resume();
         triajeDeControlPapelyCarton.resume();
         triajeDeControlPEAD.resume();
@@ -929,10 +934,11 @@ public class StaticComponents {
         salidaOrganica.notifyThread();
         salidaFilm.notifyThread();
         salidaCompost.notifyThread();
-        salidaBRICKS.notifyThread();
+        salidaBriks.notifyThread();
         salidaAluminio.notifyThread();
         salidaMezcla.notifyThread();
-        salidaPET.notifyThread(); 
+        salidaPET.notifyThread();
+        salidaRechazo.notifyThread();
 
         foso.notifyThread();
         triajePrimario.notifyThread();
@@ -946,12 +952,12 @@ public class StaticComponents {
         separadorMagnetico2.notifyThread();
         compostaje.notifyThread();
         separadorOpticoPlasticos.notifyThread();
-        separadorOpticoBRICK.notifyThread();
+        separadorOpticoBRIK.notifyThread();
         separadorOpticoPET.notifyThread();
         separadorOpticoPEAD.notifyThread();
         separadorInductivo.notifyThread();
         triajeDeControlAluminio.notifyThread();
-        triajeDeControlBricks.notifyThread();
+        triajeDeControlBriks.notifyThread();
         triajeDeControlFilm.notifyThread();
         triajeDeControlPapelyCarton.notifyThread();
         triajeDeControlPEAD.notifyThread();

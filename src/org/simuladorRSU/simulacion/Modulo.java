@@ -19,7 +19,7 @@
 package org.simuladorRSU.simulacion;
 
 /**
- * Created by Ruben Bermudez on 06/05/2014.
+ * @author Ruben Bermudez
  */
 public abstract class Modulo implements Runnable {
     protected Residuos RSU;
