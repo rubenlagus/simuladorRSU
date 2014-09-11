@@ -128,125 +128,29 @@ public class StaticComponents {
         
         salidaRechazo = new SalidaRechazo();
         
-        salidaVidrio = new Salida() {
-            @Override
-            public void DebugInfo(Boolean interrupted) {
-                if (interrupted)
-                    System.out.println("Salida Vidrio interrumpida: " + this.totalMaterial);
-                else
-                    System.out.println("Salida Vidrio: " + this.totalMaterial);
-            }
-        };
+        salidaVidrio = new Salida();
 
-        salidaVoluminosos = new Salida() {
-            @Override
-            public void DebugInfo(Boolean interrupted) {
-                if (interrupted)
-                    System.out.println("Salida Voluminosos interrumpida: " + this.totalMaterial);
-                else
-                    System.out.println("Salida Voluminosos: " + this.totalMaterial);
-            }
-        };
+        salidaVoluminosos = new Salida();
 
-        salidaPapelCarton = new Salida() {
-            @Override
-            public void DebugInfo(Boolean interrupted) {
-                if (interrupted)
-                    System.out.println("Salida Papel y Carton interrumpida: " + this.totalMaterial);
-                else
-                    System.out.println("Salida Papel y Carton: " + this.totalMaterial);
-            }
-        };
+        salidaPapelCarton = new Salida();
 
-        salidaPEAD = new Salida() {
-            @Override
-            public void DebugInfo(Boolean interrupted) {
-                if (interrupted)
-                    System.out.println("Salida PEAD interrumpida: " + this.totalMaterial);
-                else
-                    System.out.println("Salida PEAD: " + this.totalMaterial);
-            }
-        };
+        salidaPEAD = new Salida();
 
-        salidaMetalicos = new Salida() {
-            @Override
-            public void DebugInfo(Boolean interrupted) {
-                if (interrupted)
-                    System.out.println("Salida Metalicos interrumpida: " + this.totalMaterial);
-                else
-                    System.out.println("Salida Metalicos: " + this.totalMaterial);
-            }
-        };
+        salidaMetalicos = new Salida();
 
-        salidaFilm = new Salida() {
-            @Override
-            public void DebugInfo(Boolean interrupted) {
-                if (interrupted)
-                    System.out.println("Salida Film interrumpida: " + this.totalMaterial);
-                else
-                    System.out.println("Salida Film: " + this.totalMaterial);
-            }
-        };
+        salidaFilm = new Salida();
         
-        salidaOrganica = new Salida() {
-        	@Override
-            public void DebugInfo(Boolean interrupted) {
-                if (interrupted)
-                    System.out.println("Salida Organica interrumpida: " + this.totalMaterial);
-                else
-                    System.out.println("Salida Organica: " + this.totalMaterial);
-            }
-        };
+        salidaOrganica = new Salida();
         
-        salidaBriks = new Salida() {
-        	@Override
-            public void DebugInfo(Boolean interrupted) {
-                if (interrupted)
-                    System.out.println("Salida Bricks interrumpida: " + this.totalMaterial);
-                else
-                    System.out.println("Salida Bricks: " + this.totalMaterial);
-            }
-        };
+        salidaBriks = new Salida();
         
-        salidaCompost = new Salida() {
-        	@Override
-            public void DebugInfo(Boolean interrupted) {
-                if (interrupted)
-                    System.out.println("Salida Compostt interrumpida: " + this.totalMaterial);
-                else
-                    System.out.println("Salida Compost: " + this.totalMaterial);
-            }
-        };
+        salidaCompost = new Salida();
         
-        salidaAluminio = new Salida() {
-        	@Override
-            public void DebugInfo(Boolean interrupted) {
-                if (interrupted)
-                    System.out.println("Salida Aluminio interrumpida: " + this.totalMaterial);
-                else
-                    System.out.println("Salida Aluminio: " + this.totalMaterial);
-            }
-        };
+        salidaAluminio = new Salida();
         
-        salidaMezcla = new Salida() {
-        	@Override
-            public void DebugInfo(Boolean interrupted) {
-                if (interrupted)
-                    System.out.println("Salida Mezcla interrumpida: " + this.totalMaterial);
-                else
-                    System.out.println("Salida Mezcla: " + this.totalMaterial);
-            }
-        };
+        salidaMezcla = new Salida();
         
-        salidaPET = new Salida() {
-        	@Override
-            public void DebugInfo(Boolean interrupted) {
-                if (interrupted)
-                    System.out.println("Salida PET interrumpida: " + this.totalMaterial);
-                else
-                    System.out.println("Salida PET: " + this.totalMaterial);
-            }
-        };
+        salidaPET = new Salida();
         
         foso = new Foso(linea1);
         triajePrimario = new TriajeManualPrimario(linea1,salidaVidrio, salidaVoluminosos, salidaPapelCarton, salidaMetalicos, linea2);

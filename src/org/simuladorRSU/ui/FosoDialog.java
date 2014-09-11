@@ -81,7 +81,6 @@ public class FosoDialog extends JDialog {
             nuevosResiduos.setVoluminososNoMetalicos(Double.parseDouble(textFieldVolNoMetalicos.getText()));
             MasterThread.getInstance().setResiduosToFoso(nuevosResiduos);
         } catch (Exception exception) {
-            System.err.println("Wrong values");
         }
         setVisible(false);
         dispose();

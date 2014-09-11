@@ -70,13 +70,6 @@ public class Salida implements Runnable {
         this.material.add(material);
     }
 
-    public void DebugInfo(Boolean interrupted) {
-        if (interrupted)
-            System.out.println("Salida Interrumpida: " + this.totalMaterial);
-        else
-            System.out.println("Salida: " + this.totalMaterial);
-    }
-
     /**
      * When an object implementing interface <code>Runnable</code> is used
      * to create a thread, starting the thread causes the object's
@@ -93,13 +86,11 @@ public class Salida implements Runnable {
         while(!finished) {
             try {
                 if (Thread.interrupted()) {
-                    DebugInfo(true);
                     this.finished = true;
                 }
                 Double aux = material.poll();
                 if (aux != null) {
                     totalMaterial += aux;
-                    DebugInfo(false);
                 }
                 synchronized (myThread) {
                     while (suspended) {
@@ -107,7 +98,6 @@ public class Salida implements Runnable {
                     }
                 }
             }catch (InterruptedException e) {
-                DebugInfo(true);
                 this.finished = true;
             }
 
