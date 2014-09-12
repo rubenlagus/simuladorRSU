@@ -18,14 +18,21 @@
 
 package org.simuladorRSU.simulacion;
 
+import java.util.concurrent.ConcurrentLinkedDeque;
+
 /**
  * @author Ruben Bermudez
  */
-public class SalidaRechazo extends Linea implements Runnable {
+public class SalidaRechazo implements Runnable {
+    protected ConcurrentLinkedDeque<Residuos> colaResiduos;
     Residuos total = new Residuos();
     private boolean finished;
     private boolean suspended;
     private Thread myThread;
+
+    public SalidaRechazo() {
+        colaResiduos = new ConcurrentLinkedDeque<Residuos>();
+    }
 
     public void start() {
         myThread = new Thread(this);

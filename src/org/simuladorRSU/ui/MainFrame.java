@@ -89,6 +89,23 @@ public class MainFrame extends JFrame {
         labelPET.setText("PET: " + df.format(StaticComponents.getInstance().getSalidaPET().getTotal()));
         labelVidrio.setText("Vidrio: " + df.format(StaticComponents.getInstance().getSalidaVidrio().getTotal()));
         bottomPanel.repaint();
+        if (StaticComponents.getInstance().getFoso().getRSU().obtenerTotalMasa()<0.0001) {
+            pausarButton.setEnabled(false);
+            pausarButtonNewBackground(false);
+            reanudarButton.setEnabled(false);
+            reanudarButtonNewBackground(false);
+            empezarButton.setEnabled(true);
+            empezarButtonNewBackground(true);
+            pararButton.setEnabled(false);
+            pararButtonNewBackground(false);
+            buttonFoso.setEnabled(true);
+            buttonFosoNewBackground(true);
+            buttonVerRechazo.setEnabled(false);
+            buttonVerRechazoNewBackground(false);
+
+            enableModules(false);
+            MasterThread.getInstance().interruptThread();
+        }
     }
 
     public boolean isPaused() {
