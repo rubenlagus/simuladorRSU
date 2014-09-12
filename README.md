@@ -1,4 +1,14 @@
 simuladorRSU
 ============
 
-Final Degree Thesis
+This end-of-degree project has being made in order to improve and optimize the functioning (and, therefore, its cost) of municipal solid waste management facilities. A facility in Alhendín has been used to develop it; this facility is considered, actually, one of the most modern installation of this type in Spain. In this facility, most of the steps don’t have human intervention so a good optimization can be achieve by modifying fixed parameters in them (Improvement of human-modules will depend a lot on the workers).
+
+According to the design of this facility a computer simulator has been build. This computer simulator, created with Java and threads, will allow the user to see current state of the facility and modify some internal parameters from each module. The user will be also able to change the original composition of the waste that enter the process so it can be useful to simulate facilities in other places and the changes that take places between seasons. Finally the simulator will allow the users to see the efficiency of the process showing the quantity of each kind of waste that have been obtained. Modifying these parameters call allow the installation to improve its functioning and optimize its performance; this improvement can allow, not only simulate modification inside the facility, but also allow to design and simulate a new one before it is build, so modifications after building can be avoided.
+
+Using real data from Alhendín’s facility the simulator will be able to reproduce exactly the separation of the waste and the percentage of each component that should belong to each exit of a module. This feature will make the simulator more exact and more useful when analyzing the waste that had been split among the different exits.
+
+In Alhendin’s facility exists four different lines to process the waste that join in only two after some steps of the process. In the simulator, only two of those lines have been represented and as they will be joining together later and both follow the same process until that moment, they are represented as if they were only one line. The waste will follow the same steps and in the same order as it does in the real installation: first they are split by size, then some of them are divided among planar, rolling and fine materials ; finally, rolling mater will follow a process to splits them in different kind of plastic, metals, etc. During the whole process, the user will be able to modify the parameters to make them fits his/her needs.
+
+The simulator has been programmed using Java, the use of this programming language will allow it use in multiple platform such as MAC or Windows, this will allow that the same user interface can be used in all those platforms so the user will only need to use it in one platform to can use the program in any of them.
+
+The design of this simulator allow that, in next projects, it can be expanded to allow more personalization and become nearer to reality, for example, changing the position of each module to modify original order, among others possibilities.
