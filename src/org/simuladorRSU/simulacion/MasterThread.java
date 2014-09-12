@@ -43,13 +43,14 @@ public class MasterThread implements Runnable {
             instance = new MasterThread();
             myThread = new Thread(instance);
         }
-
         return instance;
     }
 
     public void start() {
 
         StaticComponents.getInstance().startThreads();
+        StaticComponents.getInstance().addFoso(residuosToFoso);
+        added = true;
         synchronized (myThread) {
             myThread = new Thread(instance);
             myThread.start();
@@ -57,19 +58,19 @@ public class MasterThread implements Runnable {
     }
 
     public void stop() {
-    	StaticComponents.getInstance().stopThreads();
+        StaticComponents.getInstance().stopThreads();
         instance = null;
     }
 
     public void suspend() {
-    	StaticComponents.getInstance().suspendThreads();
+        StaticComponents.getInstance().suspendThreads();
         suspended = true;
     }
 
     public void resume() {
-    	StaticComponents.getInstance().resumeThreads();
+        StaticComponents.getInstance().resumeThreads();
         suspended = false;
-        synchronized(myThread) {
+        synchronized (myThread) {
             myThread.notify();
         }
     }
@@ -86,7 +87,7 @@ public class MasterThread implements Runnable {
     }
 
     public void setResiduosToFoso(Residuos residuosToFoso) {
-        residuosToFoso = residuosToFoso;
+        this.residuosToFoso = residuosToFoso;
         added = false;
     }
 
@@ -103,11 +104,11 @@ public class MasterThread implements Runnable {
      */
     @Override
     public void run() {
-        while(!finished) {
+        while (!finished) {
             try {
                 Thread.sleep(1000);
-                synchronized(myThread) {
-                    while(suspended) {
+                synchronized (myThread) {
+                    while (suspended) {
                         myThread.wait();
                     }
                 }
@@ -120,5 +121,8 @@ public class MasterThread implements Runnable {
             }
         }
     }
-    
+
+    public boolean isPaused() {
+        return suspended;
+    }
 }

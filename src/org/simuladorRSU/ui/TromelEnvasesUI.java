@@ -61,8 +61,8 @@ public class TromelEnvasesUI extends JDialog {
         tromelEnvases.setLongitudPequenios(sliderLongitudHuecosPequenios.getValue());
         tromelEnvases.setVelocidadGiro(sliderVelGiro.getValue());
         setVisible(false);
-        if (this.getContentPane() instanceof MainFrame) {
-            MainFrame mainFrame = (MainFrame) this.getContentPane();
+        if (this.getParent() instanceof MainFrame) {
+            MainFrame mainFrame = (MainFrame) this.getParent();
             if (mainFrame.isPaused()) {
                 MasterThread.getInstance().resume();
             }
@@ -72,8 +72,8 @@ public class TromelEnvasesUI extends JDialog {
 
     private void cancelButtonActionPerformed(ActionEvent e) {
         setVisible(false);
-        if (this.getContentPane() instanceof MainFrame) {
-            MainFrame mainFrame = (MainFrame) this.getContentPane();
+        if (this.getParent() instanceof MainFrame) {
+            MainFrame mainFrame = (MainFrame) this.getParent();
             if (mainFrame.isPaused()) {
                 MasterThread.getInstance().resume();
             }

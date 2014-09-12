@@ -57,8 +57,8 @@ public class TriajeDeControlFilmUI extends JDialog {
         triajeDeControlFilm.setEfectividad(sliderEfectividad.getValue());
         triajeDeControlFilm.setTiempo(sliderTiempoProcesamiento.getValue());
         setVisible(false);
-        if (this.getContentPane() instanceof MainFrame) {
-            MainFrame mainFrame = (MainFrame) this.getContentPane();
+        if (this.getParent() instanceof MainFrame) {
+            MainFrame mainFrame = (MainFrame) this.getParent();
             if (mainFrame.isPaused()) {
                 MasterThread.getInstance().resume();
             }
@@ -68,8 +68,8 @@ public class TriajeDeControlFilmUI extends JDialog {
 
     private void cancelButtonActionPerformed(ActionEvent e) {
         setVisible(false);
-        if (this.getContentPane() instanceof MainFrame) {
-            MainFrame mainFrame = (MainFrame) this.getContentPane();
+        if (this.getParent() instanceof MainFrame) {
+            MainFrame mainFrame = (MainFrame) this.getParent();
             if (mainFrame.isPaused()) {
                 MasterThread.getInstance().resume();
             }

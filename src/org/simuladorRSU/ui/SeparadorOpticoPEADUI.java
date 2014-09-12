@@ -55,8 +55,8 @@ public class SeparadorOpticoPEADUI extends JDialog {
         separadorOpticoPEAD.setTiempo(sliderTiempoProcesamiento.getValue());
         separadorOpticoPEAD.setVelocidadCinta(sliderVelocidad.getValue());
         setVisible(false);
-        if (this.getContentPane() instanceof MainFrame) {
-            MainFrame mainFrame = (MainFrame) this.getContentPane();
+        if (this.getParent() instanceof MainFrame) {
+            MainFrame mainFrame = (MainFrame) this.getParent();
             if (mainFrame.isPaused()) {
                 MasterThread.getInstance().resume();
             }
@@ -66,8 +66,8 @@ public class SeparadorOpticoPEADUI extends JDialog {
 
     private void cancelButtonActionPerformed(ActionEvent e) {
         setVisible(false);
-        if (this.getContentPane() instanceof MainFrame) {
-            MainFrame mainFrame = (MainFrame) this.getContentPane();
+        if (this.getParent() instanceof MainFrame) {
+            MainFrame mainFrame = (MainFrame) this.getParent();
             if (mainFrame.isPaused()) {
                 MasterThread.getInstance().resume();
             }

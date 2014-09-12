@@ -58,8 +58,8 @@ public class SeparadorBalisticoUI extends JDialog {
         separadorBalistico.setDiametroHuecos(sliderDiametroHuecos.getValue());
         separadorBalistico.setLongitud(sliderLongitud.getValue());
         setVisible(false);
-        if (this.getContentPane() instanceof MainFrame) {
-            MainFrame mainFrame = (MainFrame) this.getContentPane();
+        if (this.getParent() instanceof MainFrame) {
+            MainFrame mainFrame = (MainFrame) this.getParent();
             if (mainFrame.isPaused()) {
                 MasterThread.getInstance().resume();
             }
@@ -69,8 +69,8 @@ public class SeparadorBalisticoUI extends JDialog {
 
     private void cancelButtonActionPerformed(ActionEvent e) {
         setVisible(false);
-        if (this.getContentPane() instanceof MainFrame) {
-            MainFrame mainFrame = (MainFrame) this.getContentPane();
+        if (this.getParent() instanceof MainFrame) {
+            MainFrame mainFrame = (MainFrame) this.getParent();
             if (mainFrame.isPaused()) {
                 MasterThread.getInstance().resume();
             }

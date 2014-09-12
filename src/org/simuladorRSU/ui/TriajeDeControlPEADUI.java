@@ -57,8 +57,8 @@ public class TriajeDeControlPEADUI extends JDialog {
         triajeDeControlPEAD.setEfectividad(sliderEfectividad.getValue());
         triajeDeControlPEAD.setTiempo(sliderTiempoProcesamiento.getValue());
         setVisible(false);
-        if (this.getContentPane() instanceof MainFrame) {
-            MainFrame mainFrame = (MainFrame) this.getContentPane();
+        if (this.getParent() instanceof MainFrame) {
+            MainFrame mainFrame = (MainFrame) this.getParent();
             if (mainFrame.isPaused()) {
                 MasterThread.getInstance().resume();
             }
@@ -68,8 +68,8 @@ public class TriajeDeControlPEADUI extends JDialog {
 
     private void cancelButtonActionPerformed(ActionEvent e) {
         setVisible(false);
-        if (this.getContentPane() instanceof MainFrame) {
-            MainFrame mainFrame = (MainFrame) this.getContentPane();
+        if (this.getParent() instanceof MainFrame) {
+            MainFrame mainFrame = (MainFrame) this.getParent();
             if (mainFrame.isPaused()) {
                 MasterThread.getInstance().resume();
             }

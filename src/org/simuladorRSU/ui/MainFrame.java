@@ -109,7 +109,7 @@ public class MainFrame extends JFrame {
     }
 
     public boolean isPaused() {
-        return reanudarButton.isEnabled();
+        return MasterThread.getInstance().isPaused();
     }
 
     private void createLines() {
