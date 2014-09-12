@@ -23,8 +23,7 @@ import java.util.concurrent.ConcurrentLinkedDeque;
 /**
  * @author Ruben Bermudez
  */
-public class SalidaRechazo implements Runnable {
-    protected ConcurrentLinkedDeque<Residuos> colaResiduos;
+public class SalidaRechazo extends Linea implements Runnable {
     Residuos total = new Residuos();
     private boolean finished;
     private boolean suspended;
